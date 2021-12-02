@@ -1,8 +1,19 @@
 import './App.css';
+import LoginPage from './Pages/LoginPage';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+
 function App() {
   return (
     <div className="app">
-      <h1>Hey this is Main page component</h1>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<LoginPage/>}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
