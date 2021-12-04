@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { FcGoogle } from "react-icons/fc";
 
 function Login() {
   return (
@@ -20,7 +19,7 @@ function Login() {
         </Hero>
         <Form>
           <Google>
-            <FcGoogle />
+          <img src="/Assets/google.svg" alt="image1" />
             Sign In with Google
           </Google>
         </Form>
