@@ -1,7 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 
-function Header() {
+function Header(props) {
   return (
     <Container>
       <Content>
@@ -46,7 +47,11 @@ function Header() {
             </NavList>
             <User>
               <a>
-                <img src="/Assets/user.svg" alt="" />
+                {
+                  // If user exists then show its profile otherwisw show blank user profile
+                  props.user && props.user.photoURL ? <img src={props.user.photoURL} alt=""/> :
+                  <img src="/Assets/user.svg" alt="" />
+                }
                 <span>
                   Me
                   <img src="/Assets/down-icon.svg" alt="" />
@@ -237,4 +242,13 @@ const Work = styled(User)`
   border-left: 1px solid rgba(0, 0, 0, 0.08);
 `;
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+   user: state.userState.user,
+  }
+}
+const mapDispatchToProps = (dispatch) => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

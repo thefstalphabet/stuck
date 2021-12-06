@@ -46,6 +46,8 @@ function Right() {
 
 const Container = styled.div`
   grid-area: rightside;
+  z-index: -1;
+
 `;
 const FollowCard = styled.div`
   text-align: center;
