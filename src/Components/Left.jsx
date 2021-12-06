@@ -56,6 +56,7 @@ function Left() {
 
 const Container = styled.div`
   grid-area: leftside;
+  z-index: -1;
 `;
 const ArtCard = styled.div`
   text-align: center;

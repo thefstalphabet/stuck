@@ -7,6 +7,7 @@ import { FiShare } from "react-icons/fi";
 import { RiSendPlaneLine } from "react-icons/ri";
 import { RiCalendarEventFill, RiArticleFill } from "react-icons/ri";
 import { BsThreeDots } from "react-icons/bs";
+import { connect } from "react-redux";
 import {
   AiFillLike,
   AiFillFire,
@@ -14,12 +15,20 @@ import {
   AiOutlineLike,
 } from "react-icons/ai";
 
-function Middle() {
+function Middle(props) {
   return (
     <Container>
       <ShareBox>
         <div>
-          <img src="/Assets/user.svg" alt="" />
+          {
+            // If user exists then show its profile otherwisw show blank user profile
+            props.user && props.user.photoURL ? (
+              <img src={props.user.photoURL} alt="" />
+            ) : (
+              <img src="/Assets/user.svg" alt="" />
+            )
+          }
+          {/* <img src="/Assets/user.svg" alt="" /> */}
           <button>Start a Post</button>
         </div>
         <div>
@@ -102,6 +111,7 @@ function Middle() {
 
 const Container = styled.div`
   grid-area: middle;
+  z-index: -1;
 `;
 const CommonCard = styled.div`
   text-align: center;
@@ -263,18 +273,25 @@ const SocialActions = styled.div`
   margin: 0;
   min-height: 40px;
   padding: 4px 8px;
-  button{
+  button {
     display: inline-flex;
     align-items: center;
     padding: 8px;
     color: var(--main-color);
 
-    @media (min-width: 768px){
-      span{
+    @media (min-width: 768px) {
+      span {
         margin-left: 8px;
       }
     }
   }
 `;
 
-export default Middle;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Middle);
