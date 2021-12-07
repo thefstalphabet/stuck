@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { signOutAPI } from "../Actions";
 
 function Header(props) {
   return (
@@ -49,15 +50,18 @@ function Header(props) {
               <a>
                 {
                   // If user exists then show its profile otherwisw show blank user profile
-                  props.user && props.user.photoURL ? <img src={props.user.photoURL} alt=""/> :
-                  <img src="/Assets/user.svg" alt="" />
+                  props.user && props.user.photoURL ? (
+                    <img src={props.user.photoURL} alt="" />
+                  ) : (
+                    <img src="/Assets/user.svg" alt="" />
+                  )
                 }
                 <span>
                   Me
                   <img src="/Assets/down-icon.svg" alt="" />
                 </span>
               </a>
-              <SignOut>
+              <SignOut onClick={() => props.signOut()}>
                 <a>Sign Out</a>
               </SignOut>
             </User>
@@ -244,11 +248,11 @@ const Work = styled(User)`
 
 const mapStateToProps = (state) => {
   return {
-   user: state.userState.user,
-  }
-}
+    user: state.userState.user,
+  };
+};
 const mapDispatchToProps = (dispatch) => ({
-
-})
+  signOut: () => dispatch(signOutAPI()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
