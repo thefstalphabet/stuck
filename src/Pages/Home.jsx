@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../Components/Header";
 import Left from "../Components/Left";
 import Middle from "../Components/Middle";
 import Right from "../Components/Right";
@@ -11,7 +10,6 @@ function Home(props) {
   return (
     <Conatiner>
       {!props.user && <Navigate to="/" />}
-      <Header />
       <Section>
         Welcome to the <span>Stuck! Community,</span> Helping you open windows
         of opportunity worldwide.
@@ -25,14 +23,14 @@ function Home(props) {
   );
 }
 
+// Styling
 const Conatiner = styled.div``;
 const Section = styled.div`
-  /* padding-top: 80px; */
+  padding-top: 60px;
   margin-top: 25px;
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400px;
-
   span {
     font-weight: 600;
   }
@@ -52,10 +50,10 @@ const Layout = styled.div`
   }
 `;
 
+// State Managment
 const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
   };
 };
-
 export default connect(mapStateToProps)(Home);

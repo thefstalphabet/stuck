@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
-function Left() {
+function Left(props) {
   return (
     <Container>
       <ArtCard>
@@ -9,12 +10,15 @@ function Left() {
           <CardBackground />
           <a>
             <Photo />
-            <Link>Welcome, there!</Link>
+            <Link>
+              {props.user ? "Welcome, "+props.user.displayName : "Welcome, there"}
+            </Link>
           </a>
           <a>
             <AddPhotoText>Add a Photo</AddPhotoText>
           </a>
         </UserInfo>
+
         <Widget>
           <a>
             <div>
@@ -33,6 +37,7 @@ function Left() {
           </Item>
         </Widget>
       </ArtCard>
+
       <CommunityCard>
         <a>
           <span>Groups</span>
@@ -54,9 +59,9 @@ function Left() {
   );
 }
 
+// Styling
 const Container = styled.div`
   grid-area: leftside;
-  z-index: -1;
 `;
 const ArtCard = styled.div`
   text-align: center;
@@ -69,7 +74,6 @@ const ArtCard = styled.div`
   border: none;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 0 rgb(0 0 0 / 20%);
 `;
-
 const UserInfo = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   padding: 12px 12px 16px;
@@ -99,7 +103,7 @@ const Photo = styled.div`
   border-radius: 50%;
 `;
 const Link = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   color: rgba(0, 0, 0, 0.9);
   font-weight: 600;
@@ -107,7 +111,7 @@ const Link = styled.div`
 const AddPhotoText = styled.div`
   color: #0a66c2;
   margin-top: 4px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.33;
   font-weight: 400;
 `;
@@ -115,24 +119,21 @@ const Widget = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   padding-top: 12px;
   padding-bottom: 12px;
-
   & > a {
     text-decoration: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 4px 12px;
-
     &:hover {
       background-color: rgba(0, 0, 0, 0.08);
     }
-
     div {
       display: flex;
       flex-direction: column;
       text-align: left;
       span {
-        font-size: 12px;
+        font-size: 14px;
         line-height: 1.333;
         &:first-child {
           color: rgba(0, 0, 0, 0.6);
@@ -151,7 +152,7 @@ const Item = styled.div`
   border-color: rgba(0, 0, 0, 0.8);
   text-align: left;
   padding: 12px;
-  font-size: 12px;
+  font-size: 14px;
   display: block;
   span {
     display: flex;
@@ -161,7 +162,6 @@ const Item = styled.div`
       color: rgba(0, 0, 0, 0.6);
     }
   }
-
   &:hover {
     background-color: rgba(0, 0, 0, 0.08);
   }
@@ -174,7 +174,7 @@ const CommunityCard = styled(ArtCard)`
   a {
     color: black;
     padding: 4px 12px 4px 12px;
-    font-size: 12px;
+    font-size: 14px;
     &:hover {
       color: #0a66c2;
     }
@@ -195,4 +195,10 @@ const CommunityCard = styled(ArtCard)`
   }
 `;
 
-export default Left;
+// State Managment
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+export default connect(mapStateToProps)(Left);
