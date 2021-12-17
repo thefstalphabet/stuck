@@ -6,23 +6,23 @@ function Right() {
     <Container>
       <FollowCard>
         <Title>
-          <h2>Add to Your Feed</h2>
+          <span>Add to Your Feed</span>
           <img src="/Assets/feed-icon.svg" alt="" />
         </Title>
         <FeedList>
           <li>
-            <a>
-              <Avatar />
-            </a>
             <div>
               <span>#stuck</span>
               <button>Follow</button>
             </div>
           </li>
           <li>
-            <a>
-              <Avatar />
-            </a>
+            <div>
+              <span>#vedio</span>
+              <button>Follow</button>
+            </div>
+          </li>
+          <li>
             <div>
               <span>#vedio</span>
               <button>Follow</button>
@@ -44,10 +44,9 @@ function Right() {
   );
 }
 
+// Styling
 const Container = styled.div`
   grid-area: rightside;
-  z-index: -1;
-
 `;
 const FollowCard = styled.div`
   text-align: center;
@@ -64,9 +63,13 @@ const Title = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 600;
   width: 100%;
   color: rgba(0, 0, 0, 0.6);
+  img{
+    width: 5%;
+  }
 `;
 const FeedList = styled.ul`
   margin-top: 16px;
@@ -82,15 +85,11 @@ const FeedList = styled.ul`
     }
     button {
       background-color: transparent;
-      /* background-color: var(--main-color); */
-      /* box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.6); */
-      padding: 16px;
+      padding: 14px;
       color: var(--main-color);
       align-items: center;
-      border: 2px solid var(--main-color);
+      border: 1.5px solid var(--main-color);
       border-radius: 15px;
-      /* box-sizing: border-box; */
-      font-weight: 600;
       display: inline-flex;
       justify-content: center;
       max-height: 32px;
@@ -99,15 +98,6 @@ const FeedList = styled.ul`
       outline: none;
     }
   }
-`;
-const Avatar = styled.div`
-  background-image: url("https://static-exp1.licdn.com/sc/h/1b4vl1r54ijmrmcyxzoidwmxs");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 48px;
-  height: 48px;
-  margin-right: 8px;
 `;
 const Recommendation = styled.div`
   color: #0a66c2;

@@ -1,5 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import {
+  AiFillLike,
+  AiFillFire,
+  AiFillHeart,
+  AiOutlineLike,
+} from "react-icons/ai";
 import { MdInsertPhoto } from "react-icons/md";
 import { FaFileVideo } from "react-icons/fa";
 import { BiComment } from "react-icons/bi";
@@ -8,14 +14,29 @@ import { RiSendPlaneLine } from "react-icons/ri";
 import { RiCalendarEventFill, RiArticleFill } from "react-icons/ri";
 import { BsThreeDots } from "react-icons/bs";
 import { connect } from "react-redux";
-import {
-  AiFillLike,
-  AiFillFire,
-  AiFillHeart,
-  AiOutlineLike,
-} from "react-icons/ai";
+import PostModal from "./PostModal";
+import { useState } from "react";
 
 function Middle(props) {
+  // State to close or display the model
+  const [showModal, setShowModal] = useState("close");
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+    switch (showModal) {
+      case "open":
+        setShowModal("close");
+        break;
+      case "close":
+        setShowModal("open");
+        break;
+      default:
+        setShowModal("close");
+    }
+  };
+
   return (
     <Container>
       <ShareBox>
@@ -28,8 +49,7 @@ function Middle(props) {
               <img src="/Assets/user.svg" alt="" />
             )
           }
-          {/* <img src="/Assets/user.svg" alt="" /> */}
-          <button>Start a Post</button>
+          <button onClick={handleClick}>Start a Post</button>
         </div>
         <div>
           <button>
@@ -105,13 +125,14 @@ function Middle(props) {
           </button>
         </SocialActions>
       </Article>
+      <PostModal showModal={showModal} handleClick={handleClick} />
     </Container>
   );
 }
 
+// Styling
 const Container = styled.div`
   grid-area: middle;
-  z-index: -1;
 `;
 const CommonCard = styled.div`
   text-align: center;
@@ -132,8 +153,8 @@ const ShareBox = styled(CommonCard)`
   div {
     button {
       outline: none;
-      color: rgba(0, 0, 0, 0.8);
-      font-size: 14px;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 16px;
       line-height: 1.5;
       min-height: 48px;
       background: transparent;
@@ -143,23 +164,26 @@ const ShareBox = styled(CommonCard)`
       font-weight: 400;
       span {
         margin-left: 2px;
+        font-size: 14px
       }
     }
     &:first-child {
       display: flex;
       align-items: center;
       padding: 0 16px 0 16px;
+      padding-top: 10px;
       img {
-        width: 40px;
+        width: 45px;
         border-radius: 50%;
         margin-right: 8px;
       }
       button {
         margin: 4px 0;
         flex-grow: 1;
+        font-size: 14px;
         border-radius: 35px;
         padding-left: 16px;
-        border: 1px solid rgba(0, 0, 0, 0.15);
+        border: 1.5px solid rgba(0, 0, 0, 0.15);
         background-color: white;
         text-align: left;
       }
@@ -170,7 +194,6 @@ const ShareBox = styled(CommonCard)`
       justify-content: space-around;
       padding-bottom: 4px;
       button {
-        color: var(--main-color);
         span {
           color: #0a66c2;
         }
@@ -214,8 +237,8 @@ const SharedActor = styled.div`
           font-weight: 700;
           color: rgba(0, 0, 0, 1);
         }
-        &::nth-child(n + 1) {
-          font-size: 12px;
+        &:nth-child(n + 1) {
+          font-size: 14px;
           color: rgba(0, 0, 0, 0.6);
         }
       }
@@ -255,15 +278,23 @@ const SocialCounts = styled.div`
   display: flex;
   align-items: flex-start;
   overflow: auto;
-  margin: 0 16px;
+  margin: 0 8px;
   padding: 8px 0;
   border-bottom: 1px solid #e9e5df;
   list-style: none;
   li {
     margin-right: 5px;
-    font-size: 12px;
+    font-size: 14px;
     button {
+      color: var(--main-color);
       display: flex;
+      border: none;
+      font-size: 16px;
+      background: transparent;
+      span{
+        color: rgba(0,0,0,0.8);
+        margin-left: 5px;
+      }
     }
   }
 `;
@@ -287,11 +318,11 @@ const SocialActions = styled.div`
   }
 `;
 
+// State Managment
 const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
   };
 };
 const mapDispatchToProps = (dispatch) => ({});
-
 export default connect(mapStateToProps, mapDispatchToProps)(Middle);

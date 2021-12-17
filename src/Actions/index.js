@@ -1,4 +1,4 @@
-// Root action file
+// Root file
 
 import { auth, provider } from "../firebase";
 import { SET_USER } from "./actionType";

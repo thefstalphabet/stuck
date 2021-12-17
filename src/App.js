@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { getUserAuth } from "./Actions";
 import { connect } from "react-redux";
+import Header from "./Components/Header";
 
 function App(props) {
   useEffect(() => {
@@ -16,8 +17,7 @@ function App(props) {
       <Router>
         <Routes>
           <Route exact path="/" element={<LoginPage />}></Route>
-          <Route exact path="/home" element={<Home />}></Route>
-        </Routes>
+          <Route path="/home" element={[<Header/>, <Home/>]} /></Routes>
       </Router>
     </div>
   );

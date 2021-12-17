@@ -1,4 +1,4 @@
-// Root store file
+// Root file
 
 // import createStore and applyMiddleware
 import { createStore, applyMiddleware } from "redux";

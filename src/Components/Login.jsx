@@ -46,7 +46,6 @@ const Nav = styled.nav`
   position: relative;
   justify-content: space-between;
   flex-wrap: nowrap;
-
   & > a > img {
     width: auto;
     height: 50px;
@@ -64,7 +63,6 @@ const Join = styled.a`
   border-radius: 4px;
   color: rgba(0, 0, 0, 0.6);
   margin-right: 12px;
-
   &:hover {
     background-color: rgba(0, 0, 0, 0.08);
     color: rgba(0, 0, 0, 0.9);
@@ -82,7 +80,6 @@ const SignIn = styled.a`
   padding: 10px 24px;
   text-align: center;
   background-color: rgba(0, 0, 0, 0);
-
   &:hover {
     background-color: var(--main-color);
     color: #ffffff;
@@ -102,7 +99,6 @@ const Section = styled.section`
   max-width: 1128px;
   align-items: center;
   margin: auto;
-
   @media (max-width: 768px) {
     margin: auto;
     min-height: 0px;
@@ -111,7 +107,6 @@ const Section = styled.section`
 const Hero = styled.div`
   width: 100%;
   text-align: center;
-
   h1 {
     padding-bottom: 0;
     width: 40%;
@@ -120,7 +115,6 @@ const Hero = styled.div`
     font-weight: 400;
     line-height: 70px;
     text-align: left;
-
     @media (max-width: 830px) {
       text-align: center;
       font-size: 30px;
@@ -134,7 +128,6 @@ const Hero = styled.div`
     position: absolute;
     bottom: 130px;
     right: -10px;
-
     @media (max-width: 830px) {
       top: 230px;
       width: 27rem;
@@ -145,7 +138,6 @@ const Hero = styled.div`
 const Form = styled.div`
   margin-top: 100px;
   width: 408px;
-
   @media (max-width: 768px) {
     margin-top: 20px;
     width: 100%;
@@ -166,13 +158,13 @@ const Google = styled.button`
   color: var(--main-color);
   border-radius: 24px;
   transition-duration: 167ms;
-
   &:hover {
     background-color: rgba(207, 207, 207, 0.25);
     color: rgba(0, 0, 0, 0.75);
   }
 `;
 
+// State Managment
 const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
@@ -181,5 +173,4 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   signIn: () => dispatch(signInAPI()),
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

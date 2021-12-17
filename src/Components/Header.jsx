@@ -1,6 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
+import { connect } from "react-redux";
 import { signOutAPI } from "../Actions";
 
 function Header(props) {
@@ -12,6 +12,7 @@ function Header(props) {
             <img src="/Assets/logo1.png" alt="logo" />
           </a>
         </Logo>
+
         <Search>
           <div>
             <input type="text" placeholder="Search" />
@@ -20,6 +21,7 @@ function Header(props) {
             <img src="/Assets/search-icon.svg" alt="" />
           </SearchIcon>
         </Search>
+
         <Nav>
           <NavListWrap>
             <NavList className="active">
@@ -86,10 +88,11 @@ const Container = styled.div`
   background-color: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   left: 0;
+  top: 0;
   padding: 0 24px;
-  /* position: fixed; */
+  position: fixed;
   width: 100vw;
-  z-index: 100;
+  z-index: 1;
 `;
 const Content = styled.div`
   display: flex;
@@ -101,7 +104,6 @@ const Content = styled.div`
 const Logo = styled.span`
   margin-right: 8px;
   font-size: 0px;
-
   & > a > img {
     width: 60px;
     height: auto;
@@ -111,7 +113,6 @@ const Search = styled.div`
   opacity: 1;
   flex-grow: 1;
   position: relative;
-
   & > div {
     max-width: 280px;
     input {
@@ -173,7 +174,6 @@ const NavListWrap = styled.ul`
     }
   }
 `;
-
 const NavList = styled.li`
   display: flex;
   align-items: center;
@@ -182,7 +182,6 @@ const NavList = styled.li`
     background: transparent;
     display: flex;
     flex-direction: column;
-    font-size: 12px;
     font-weight: 500;
     justify-content: center;
     line-height: 1.5;
@@ -215,7 +214,7 @@ const SignOut = styled.div`
   border-radius: 0 0 5px 5px;
   width: 100px;
   height: 40px;
-  font-size: 16px;
+  font-size: 14px;
   transition-duration: 167ms;
   text-align: center;
   display: none;
@@ -246,6 +245,7 @@ const Work = styled(User)`
   border-left: 1px solid rgba(0, 0, 0, 0.08);
 `;
 
+// State Managment
 const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
@@ -254,5 +254,4 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(signOutAPI()),
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
